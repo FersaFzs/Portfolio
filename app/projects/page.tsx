@@ -87,8 +87,8 @@ export default function ProjectsPage() {
         </motion.h1>
 
         <div className="relative w-full">
-          <div className="overflow-x-auto scrollbar-hide">
-            <div className="flex gap-8 pb-8" style={{ width: 'max-content' }}>
+          <div className="overflow-x-auto scrollbar-hide hover:overflow-x-scroll">
+            <div className="flex gap-8 pb-8 min-w-max">
               {projects.map((project, index) => (
                 <motion.div
                   key={project.title}

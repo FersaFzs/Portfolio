@@ -19,7 +19,7 @@ const skills = [
 
 export function About() {
   return (
-    <section id="about" className="snap-section relative min-h-screen flex items-center justify-center overflow-hidden pt-20 pb-32 md:pt-0 md:pb-0">
+    <section id="about" className="snap-section relative min-h-screen flex items-center justify-center overflow-y-auto pt-32 pb-32 md:pt-0 md:pb-0">
       {/* Efectos de fondo */}
       <div className="absolute inset-0 overflow-hidden">
         <motion.div
