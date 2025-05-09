@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import { FiGithub, FiExternalLink, FiArrowLeft } from 'react-icons/fi';
 import Link from 'next/link';
+import { useEffect, useRef } from 'react';
 
 const projects = [
   {
@@ -55,6 +56,21 @@ const projects = [
 ];
 
 export default function ProjectsPage() {
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const scrollContainer = scrollContainerRef.current;
+    if (!scrollContainer) return;
+
+    const handleWheel = (e: WheelEvent) => {
+      e.preventDefault();
+      scrollContainer.scrollLeft += e.deltaY;
+    };
+
+    scrollContainer.addEventListener('wheel', handleWheel, { passive: false });
+    return () => scrollContainer.removeEventListener('wheel', handleWheel);
+  }, []);
+
   return (
     <main className="min-h-screen bg-background overflow-hidden">
       <div className="container mx-auto px-4 py-8 md:py-12">
@@ -88,11 +104,12 @@ export default function ProjectsPage() {
 
         <div className="relative w-full">
           <div 
-            className="overflow-x-auto scrollbar-hide hover:overflow-x-scroll scroll-smooth"
+            ref={scrollContainerRef}
+            className="overflow-x-auto scrollbar-hide"
             style={{
               scrollBehavior: 'smooth',
               WebkitOverflowScrolling: 'touch',
-              scrollSnapType: 'x proximity',
+              scrollSnapType: 'x mandatory',
               scrollPadding: '0 1rem'
             }}
           >
@@ -100,7 +117,7 @@ export default function ProjectsPage() {
               {projects.map((project, index) => (
                 <motion.div
                   key={project.title}
-                  className="w-[400px] flex-shrink-0 scroll-snap-start relative"
+                  className="w-[400px] flex-shrink-0 scroll-snap-center"
                   initial={{ opacity: 0, x: 50 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}

@@ -96,93 +96,96 @@ export function Projects() {
           <span className="iridescent-text">Proyectos</span>
         </motion.h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-          {projects.map((project, index) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+          {projects.slice(0, 3).map((project, index) => (
             <motion.div
               key={project.title}
-              className="group relative bg-card-bg border border-card-border rounded-xl overflow-hidden hover-lift"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
             >
-              <div className="relative aspect-video overflow-hidden">
-                <motion.div
-                  className="absolute inset-0 bg-gradient-to-br from-primary/20 to-secondary/20"
-                  whileHover={{ scale: 1.1 }}
-                  transition={{ duration: 0.3 }}
-                />
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="w-full h-full object-cover"
-                />
-              </div>
-
-              <div className="p-6">
-                <h3 className="text-xl font-bold mb-2 text-foreground">{project.title}</h3>
-                <p className="text-foreground/80 dark:text-foreground mb-4">{project.description}</p>
-                
-                <div className="flex flex-wrap gap-2 mb-6">
-                  {project.technologies.map((tech) => (
-                    <span
-                      key={tech}
-                      className="px-3 py-1 text-sm rounded-full bg-primary/5 dark:bg-primary/10 border border-primary/20 dark:border-primary/30 text-foreground dark:text-foreground"
-                    >
-                      {tech}
-                    </span>
-                  ))}
+              <div className="group relative bg-card-bg border border-card-border rounded-xl overflow-hidden hover-lift h-full">
+                <div className="relative aspect-video overflow-hidden">
+                  <motion.div
+                    className="absolute inset-0 bg-gradient-to-br from-primary/20 to-secondary/20"
+                    whileHover={{ scale: 1.1 }}
+                    transition={{ duration: 0.3 }}
+                  />
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className="w-full h-full object-cover"
+                  />
                 </div>
 
-                <div className="flex flex-wrap gap-4">
-                  {project.showCode && (
-                    <motion.a
-                      href={project.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-2 px-4 py-2 rounded-lg bg-foreground text-background hover:bg-primary transition-colors duration-300"
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                    >
-                      <FiGithub className="w-5 h-5" />
-                      <span>Código</span>
-                    </motion.a>
-                  )}
-                  {project.showDemo && (
-                    <motion.a
-                      href={project.demo}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-2 px-4 py-2 rounded-lg border border-primary/30 hover:bg-primary/5 transition-colors duration-300"
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                    >
-                      <FiExternalLink className="w-5 h-5 text-primary" />
-                      <span className="iridescent-text">Demo</span>
-                    </motion.a>
-                  )}
+                <div className="p-6">
+                  <h3 className="text-xl font-bold mb-2 text-foreground">{project.title}</h3>
+                  <p className="text-foreground/80 dark:text-foreground mb-4">{project.description}</p>
+                  
+                  <div className="flex flex-wrap gap-2 mb-6">
+                    {project.technologies.map((tech) => (
+                      <span
+                        key={tech}
+                        className="px-3 py-1 text-sm rounded-full bg-primary/5 dark:bg-primary/10 border border-primary/20 dark:border-primary/30 text-foreground dark:text-foreground"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+
+                  <div className="flex flex-wrap gap-4">
+                    {project.showCode && (
+                      <motion.a
+                        href={project.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-2 px-4 py-2 rounded-lg bg-foreground text-background hover:bg-primary transition-colors duration-300"
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                      >
+                        <FiGithub className="w-5 h-5" />
+                        <span>Código</span>
+                      </motion.a>
+                    )}
+                    {project.showDemo && (
+                      <motion.a
+                        href={project.demo}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-2 px-4 py-2 rounded-lg border border-primary/30 hover:bg-primary/5 transition-colors duration-300"
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                      >
+                        <FiExternalLink className="w-5 h-5 text-primary" />
+                        <span className="iridescent-text">Demo</span>
+                      </motion.a>
+                    )}
+                  </div>
                 </div>
               </div>
             </motion.div>
           ))}
         </div>
 
-        <div className="mt-8 mb-12">
-          <motion.div 
-            className="text-center"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.3 }}
+        <motion.div
+          className="text-center relative"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.4 }}
+        >
+          <Link
+            href="/projects"
+            className="inline-flex items-center gap-2 px-8 py-3 rounded-lg bg-foreground text-background hover:bg-primary transition-all duration-300 hover:scale-105"
           >
-            <Link
-              href="/projects"
-              className="inline-flex items-center gap-2 px-8 py-3 rounded-full bg-foreground text-background hover:bg-primary transition-all duration-300 hover:scale-105"
-            >
-              <span>Ver Todos los Proyectos</span>
-              <FiExternalLink className="w-5 h-5" />
-            </Link>
-          </motion.div>
+            <span>Ver todos los proyectos</span>
+            <FiExternalLink className="w-5 h-5" />
+          </Link>
+        </motion.div>
+
+        {/* Zona de resistencia al scroll */}
+        <div className="h-32 mt-8 relative">
+          <div className="absolute inset-0 bg-gradient-to-b from-background via-background/80 to-transparent pointer-events-none" />
         </div>
       </div>
     </section>
