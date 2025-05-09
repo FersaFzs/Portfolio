@@ -87,12 +87,20 @@ export default function ProjectsPage() {
         </motion.h1>
 
         <div className="relative w-full">
-          <div className="overflow-x-auto scrollbar-hide hover:overflow-x-scroll">
+          <div 
+            className="overflow-x-auto scrollbar-hide hover:overflow-x-scroll scroll-smooth"
+            style={{
+              scrollBehavior: 'smooth',
+              WebkitOverflowScrolling: 'touch',
+              scrollSnapType: 'x proximity',
+              scrollPadding: '0 1rem'
+            }}
+          >
             <div className="flex gap-8 pb-8 min-w-max">
               {projects.map((project, index) => (
                 <motion.div
                   key={project.title}
-                  className="w-[400px] flex-shrink-0"
+                  className="w-[400px] flex-shrink-0 scroll-snap-start relative"
                   initial={{ opacity: 0, x: 50 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
@@ -156,6 +164,7 @@ export default function ProjectsPage() {
                       </div>
                     </div>
                   </div>
+                  <div className="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-background to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
                 </motion.div>
               ))}
             </div>

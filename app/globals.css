@@ -124,6 +124,25 @@ body {
   scroll-snap-stop: always;
   height: 100vh;
   overflow: hidden;
+  position: relative;
+}
+
+/* Resistencia al scroll */
+.snap-section::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100px;
+  background: linear-gradient(to bottom, transparent, hsl(var(--background)));
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.snap-section:hover::after {
+  opacity: 1;
 }
 
 /* Estilos de la barra de desplazamiento */
