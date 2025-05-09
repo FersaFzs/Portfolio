@@ -1,6 +1,9 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { FiArrowRight } from 'react-icons/fi';
+import Link from 'next/link';
+import { GradientButton } from '../ui/gradient-button';
 
 export function Hero() {
   const scrollToProjects = () => {
@@ -58,20 +61,12 @@ export function Hero() {
         >
           Desarrollador Web
         </motion.p>
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.4 }}
-        >
-          <motion.button
-            onClick={scrollToProjects}
-            className="px-8 py-3 rounded-full bg-gradient-to-r from-[hsl(var(--primary))] via-[hsl(var(--secondary))] to-[hsl(var(--primary))] bg-[length:200%_auto] hover:bg-[position:100%_center] text-white font-bold transition-all duration-300 border-2 border-primary/30 hover:border-primary/50 shadow-[0_0_15px_rgba(var(--primary),0.3)] dark:shadow-[0_0_15px_rgba(255,255,255,0.2)] hover:shadow-[0_0_20px_rgba(var(--primary),0.5)] dark:hover:shadow-[0_0_20px_rgba(255,255,255,0.3)]"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            Ver Proyectos
-          </motion.button>
-        </motion.div>
+        <div className="flex flex-wrap gap-4 justify-center">
+          <GradientButton href="#projects">
+            <span>Ver Proyectos</span>
+            <FiArrowRight className="w-5 h-5" />
+          </GradientButton>
+        </div>
       </div>
 
       {/* Indicador de scroll */}

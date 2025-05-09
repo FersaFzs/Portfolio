@@ -3,6 +3,8 @@
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 import emailjs from '@emailjs/browser';
+import { FiSend } from 'react-icons/fi';
+import { GradientButton } from '../ui/gradient-button';
 
 export function Contact() {
   const [formData, setFormData] = useState({
@@ -149,13 +151,17 @@ export function Contact() {
                   disabled={isLoading}
                 />
               </div>
-              <button
-                type="submit"
-                className="w-full px-6 py-3 rounded-lg bg-gradient-to-r from-[hsl(var(--primary))] via-[hsl(var(--secondary))] to-[hsl(var(--primary))] bg-[length:200%_auto] hover:bg-[position:100%_center] text-white font-bold transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] shadow-lg hover:shadow-primary/20 disabled:opacity-50 disabled:cursor-not-allowed"
-                disabled={isLoading}
+              <motion.div
+                className="text-center"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.4 }}
               >
-                {isLoading ? 'Enviando...' : 'ENVIAR'}
-              </button>
+                <GradientButton type="submit">
+                  <span>Enviar mensaje</span>
+                  <FiSend className="w-5 h-5" />
+                </GradientButton>
+              </motion.div>
             </motion.form>
           )}
         </div>

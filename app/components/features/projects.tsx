@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import { FiGithub, FiExternalLink } from 'react-icons/fi';
 import Link from 'next/link';
+import { GradientButton } from '../ui/gradient-button';
 
 const projects = [
   {
@@ -169,18 +170,15 @@ export function Projects() {
         </div>
 
         <motion.div
-          className="text-center relative"
+          className="text-center"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.4 }}
         >
-          <Link
-            href="/projects"
-            className="inline-flex items-center gap-2 px-8 py-3 rounded-lg bg-foreground text-background hover:bg-primary transition-all duration-300 hover:scale-105"
-          >
+          <GradientButton href="/projects">
             <span>Ver todos los proyectos</span>
             <FiExternalLink className="w-5 h-5" />
-          </Link>
+          </GradientButton>
         </motion.div>
 
         {/* Zona de resistencia al scroll */}
