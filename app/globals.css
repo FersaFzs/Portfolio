@@ -110,13 +110,20 @@ body {
 /* Configuración del scroll */
 html {
   scroll-behavior: smooth;
-  scroll-snap-type: y mandatory;
+  scroll-snap-type: y proximity;
   scroll-padding-top: 0;
+  scroll-timeline: --page-scroll block;
+  will-change: scroll-position;
 }
 
 body {
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
+  scroll-timeline-axis: block;
+  scroll-timeline-view: block;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .snap-section {
@@ -125,11 +132,19 @@ body {
   height: 100vh;
   overflow: hidden;
   position: relative;
+  animation: snap-scroll 1.8s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+  backface-visibility: hidden;
+  transform: translateZ(0);
 }
 
-/* Eliminar la resistencia al scroll anterior */
-.snap-section::after {
-  display: none;
+@keyframes snap-scroll {
+  from {
+    scroll-snap-coordinate: 0 0;
+  }
+  to {
+    scroll-snap-coordinate: 0 100vh;
+  }
 }
 
 /* Estilos de la barra de desplazamiento */
@@ -151,13 +166,66 @@ body {
   background-color: hsl(var(--primary) / 0.7);
 }
 
-/* Efectos de hover para los indicadores */
+/* Animaciones de entrada */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 20px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.animate-fadeInUp {
+  animation: fadeInUp 0.8s ease-out forwards;
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}
+
+/* Efecto de brillo para las tarjetas */
+.card-glow {
+  box-shadow: 0 0 15px hsl(var(--primary) / 0.1),
+              0 0 30px hsl(var(--primary) / 0.05);
+  will-change: box-shadow;
+}
+
+/* Efecto de hover para las tarjetas */
+.card-hover {
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform, box-shadow;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}
+
+.card-hover:hover {
+  transform: translate3d(0, -0.25rem, 0);
+  box-shadow: 0 0 20px hsl(var(--primary) / 0.2),
+              0 0 40px hsl(var(--primary) / 0.1);
+}
+
+/* Transiciones suaves para elementos interactivos */
+a, button {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}
+
+/* Efecto de hover para los indicadores */
 .indicator-active {
   background-color: hsl(var(--foreground));
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: background-color;
 }
 
 .indicator-inactive {
   background-color: hsl(var(--foreground) / 0.3);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: background-color;
 }
 
 /* Efecto de hover para los indicadores */
@@ -165,11 +233,12 @@ body {
   position: relative;
   display: flex;
   align-items: center;
+  will-change: transform;
 }
 
 .indicator-container:hover .indicator-label {
   opacity: 1;
-  transform: translateX(0);
+  transform: translate3d(0, 0, 0);
   visibility: visible;
 }
 
@@ -182,42 +251,11 @@ body {
   white-space: nowrap;
   opacity: 0;
   visibility: hidden;
-  transform: translateX(-0.5rem);
-  transition: all 0.3s ease;
+  transform: translate3d(-0.5rem, 0, 0);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 50;
   color: hsl(var(--foreground));
   line-height: 1;
-}
-
-/* Animaciones de entrada */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.animate-fadeInUp {
-  animation: fadeInUp 0.5s ease-out forwards;
-}
-
-/* Efecto de brillo para las tarjetas */
-.card-glow {
-  box-shadow: 0 0 15px hsl(var(--primary) / 0.1),
-              0 0 30px hsl(var(--primary) / 0.05);
-}
-
-/* Efecto de hover para las tarjetas */
-.card-hover {
-  transition: all 0.3s ease;
-}
-
-.card-hover:hover {
-  transform: translateY(-0.25rem);
-  box-shadow: 0 0 20px hsl(var(--primary) / 0.2),
-              0 0 40px hsl(var(--primary) / 0.1);
+  will-change: transform, opacity;
+  backface-visibility: hidden;
 }

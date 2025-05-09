@@ -19,7 +19,7 @@ const skills = [
 
 export function About() {
   return (
-    <section id="about" className="snap-section relative min-h-screen flex items-center justify-center overflow-y-auto pt-32 pb-32 md:pt-0 md:pb-0">
+    <section id="about" className="relative py-16 md:py-20">
       {/* Efectos de fondo */}
       <div className="absolute inset-0 overflow-hidden">
         <motion.div
@@ -67,12 +67,10 @@ export function About() {
           >
             <h3 className="text-2xl font-semibold mb-4 text-foreground">Mi Experiencia</h3>
             <p className="text-muted-foreground mb-6">
-              Soy un desarrollador Full Stack con experiencia en la creación de aplicaciones web modernas y escalables. 
-              Me especializo en el desarrollo de soluciones robustas utilizando las últimas tecnologías y mejores prácticas.
+            Apasionado del desarrollo web con una visión integral que combina funcionalidad y experiencia de usuario. Me especializo en crear interfaces limpias, intuitivas y eficientes, siempre con el objetivo de que cada proyecto no solo funcione bien, sino que también se sienta natural al usarlo. Domino HTML, CSS, JavaScript y React, y me esfuerzo por mantenerme al día con las últimas tendencias en diseño UX/UI para ofrecer soluciones modernas y bien pensadas.
             </p>
             <p className="text-muted-foreground">
-              Mi enfoque se centra en crear experiencias de usuario excepcionales mientras mantengo un código limpio y mantenible.
-              Estoy constantemente aprendiendo y adaptándome a nuevas tecnologías para ofrecer las mejores soluciones.
+            Creo firmemente que el diseño y el desarrollo deben ir de la mano, por eso disfruto tanto programar como diseñar. Trabajo con herramientas como Figma para prototipar ideas claras y centradas en el usuario, y luego las convierto en productos funcionales con código. Me interesa especialmente crear experiencias web que sean accesibles, atractivas y adaptadas a las personas reales que las usan.
             </p>
           </motion.div>
 

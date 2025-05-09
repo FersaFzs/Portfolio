@@ -64,7 +64,8 @@ export default function ProjectsPage() {
 
     const handleWheel = (e: WheelEvent) => {
       e.preventDefault();
-      scrollContainer.scrollLeft += e.deltaY;
+      const scrollAmount = e.deltaY * 2.5;
+      scrollContainer.scrollLeft += scrollAmount;
     };
 
     scrollContainer.addEventListener('wheel', handleWheel, { passive: false });
@@ -109,8 +110,10 @@ export default function ProjectsPage() {
             style={{
               scrollBehavior: 'smooth',
               WebkitOverflowScrolling: 'touch',
-              scrollSnapType: 'x mandatory',
-              scrollPadding: '0 1rem'
+              scrollSnapType: 'x proximity',
+              scrollPadding: '0 1rem',
+              scrollTimeline: '--horizontal-scroll inline',
+              scrollTimelineAxis: 'inline'
             }}
           >
             <div className="flex gap-8 pb-8 min-w-max">
@@ -121,6 +124,11 @@ export default function ProjectsPage() {
                   initial={{ opacity: 0, x: 50 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
+                  style={{
+                    willChange: 'transform',
+                    backfaceVisibility: 'hidden',
+                    transform: 'translateZ(0)'
+                  }}
                 >
                   <div className="group relative bg-card-bg border border-card-border rounded-xl overflow-hidden hover-lift h-full">
                     <div className="relative aspect-video overflow-hidden">
