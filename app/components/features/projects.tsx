@@ -9,8 +9,8 @@ const projects = [
     title: 'Portfolio Personal',
     description: 'Mi portfolio personal construido con Next.js, TypeScript y Tailwind CSS.',
     technologies: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Framer Motion'],
-    github: 'https://github.com/tuusuario/portfolio',
-    demo: 'https://tudominio.com',
+    github: 'https://github.com/FersaFzs/Portfolio',
+    demo: 'https://fersa-web-developer.vercel.app/',
     image: '/images/projects/portfolio.png',
     showCode: true,
     showDemo: true
@@ -28,28 +28,28 @@ const projects = [
     title: 'Mini Red Social',
     description: 'Intento de red social web sencilla para usar en una red local, con funcionalidades básicas de publicación y comentarios.',
     technologies: ['React.js', 'Firebase', 'Tailwind CSS'],
-    github: 'https://github.com/tuusuario/task-manager',
+    github: 'https://github.com/FersaFzs/RedSocial',
     demo: 'https://tudominio.com/tasks',
     image: '/images/projects/social.png',
     showCode: true,
-    showDemo: true
+    showDemo: false
   },
   {
-    title: 'Diseño de Interfaz',
-    description: 'Conjunto de diseños de interfaces para diferentes aplicaciones, enfocados en la accesibilidad y la experiencia de usuario.',
-    technologies: ['Figma', 'UI/UX', 'Prototipado'],
+    title: 'Prácticas Empresariales en Aircury',
+    description: 'Prácticas durante la formación dual en la empresa Aircury, realizando un prqueño proyecto de app web.',
+    technologies: ['Next.js', 'Docker', 'Node.js', 'PostgreSQL', 'Tailwind CSS', 'Figma'],
     image: '/images/projects/design.png',
     showCode: false,
     showDemo: false
   },
   {
-    title: 'Sistema de Gestión',
-    description: 'Sistema interno de gestión para pequeñas empresas, con módulos de inventario, ventas y reportes.',
-    technologies: ['Vue.js', 'Node.js', 'MongoDB'],
+    title: 'Typing Test',
+    description: 'Juego de prueba de velocidad de escritura con generación de texto aleatorio.',
+    technologies: ['HTML', 'CSS', 'JavaScript'],
     github: 'https://github.com/tuusuario/management-system',
     demo: 'https://typingtestfersa.netlify.app/',
     image: '/images/projects/management.png',
-    showCode: true,
+    showCode: false,
     showDemo: true
   }
 ];
