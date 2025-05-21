@@ -10,21 +10,21 @@
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
-    "@react-three/drei": "^10.0.8",
-    "@react-three/fiber": "^9.1.2",
+    "@react-three/drei": "^9.99.0",
+    "@react-three/fiber": "^8.15.16",
     "@splinetool/loader": "^1.9.96",
     "@splinetool/react-spline": "^4.0.0",
     "clsx": "^2.1.1",
     "framer-motion": "^11.18.2",
     "lucide-react": "^0.507.0",
-    "next": "^15.3.1",
+    "next": "14.1.0",
     "next-themes": "^0.4.6",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^5.5.0",
     "styled-components": "^6.1.18",
     "tailwind-merge": "^3.2.0",
-    "three": "^0.176.0"
+    "three": "^0.161.0"
   },
   "devDependencies": {
     "@babel/plugin-transform-runtime": "^7.27.1",
@@ -35,5 +35,10 @@
     "postcss": "^8.5.3",
     "tailwindcss": "^3.4.17",
     "typescript": "^5"
+  },
+  "resolutions": {
+    "@react-three/drei": "^9.99.0",
+    "@react-three/fiber": "^8.15.16",
+    "three": "^0.161.0"
   }
 }
