@@ -6,23 +6,42 @@ import { Points, PointMaterial } from '@react-three/drei';
 import * as THREE from 'three';
 import dynamic from 'next/dynamic';
 
-// Componente de partículas
+// Componente de partículas optimizado
 function ParticleField() {
   const ref = useRef<THREE.Points>(null);
   const [sphere] = useState(() => {
-    const positions = new Float32Array(5000 * 3);
-    for (let i = 0; i < 5000; i++) {
-      positions[i * 3] = (Math.random() - 0.5) * 10;
-      positions[i * 3 + 1] = (Math.random() - 0.5) * 10;
-      positions[i * 3 + 2] = (Math.random() - 0.5) * 10;
+    const positions = new Float32Array(3000 * 3);
+    for (let i = 0; i < 3000; i++) {
+      positions[i * 3] = (Math.random() - 0.5) * 8;
+      positions[i * 3 + 1] = (Math.random() - 0.5) * 8;
+      positions[i * 3 + 2] = (Math.random() - 0.5) * 8;
     }
     return positions;
   });
 
+  // Detectar el tema actual
+  const [particleColor, setParticleColor] = useState('#e5e5e7'); // Color por defecto
+
+  useEffect(() => {
+    const updateColor = () => {
+      const isDark = document.documentElement.classList.contains('dark');
+      setParticleColor(isDark ? '#e5e5e7' : '#424245');
+    };
+
+    // Observador para cambios en el tema
+    const observer = new MutationObserver(updateColor);
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+
+    // Color inicial
+    updateColor();
+
+    return () => observer.disconnect();
+  }, []);
+
   useFrame((state, delta) => {
     if (ref.current) {
-      ref.current.rotation.x -= delta / 10;
-      ref.current.rotation.y -= delta / 15;
+      ref.current.rotation.x -= delta / 15;
+      ref.current.rotation.y -= delta / 20;
     }
   });
 
@@ -31,32 +50,35 @@ function ParticleField() {
       <Points ref={ref} positions={sphere} stride={3} frustumCulled={false}>
         <PointMaterial
           transparent
-          color="#ffffff"
-          size={0.02}
+          color={particleColor}
+          size={0.015}
           sizeAttenuation={true}
           depthWrite={false}
+          opacity={0.6}
         />
       </Points>
     </group>
   );
 }
 
-// Componente principal con carga dinámica
+// Componente principal con carga dinámica y optimización
 const DynamicCanvas = dynamic(() => Promise.resolve(Canvas), {
   ssr: false,
-  loading: () => <div className="w-full h-full bg-black" />
+  loading: () => <div className="w-full h-full bg-background" />
 });
 
 export function Background3D() {
   const [isLowPerformance, setIsLowPerformance] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
+    setIsMounted(true);
     const isLowEnd = !window.matchMedia('(min-width: 1024px)').matches || 
                     navigator.hardwareConcurrency <= 4;
     setIsLowPerformance(isLowEnd);
   }, []);
 
-  if (isLowPerformance) {
+  if (!isMounted || isLowPerformance) {
     return null;
   }
 
@@ -65,8 +87,10 @@ export function Background3D() {
       <DynamicCanvas
         camera={{ position: [0, 0, 1] }}
         style={{
-          background: 'linear-gradient(to bottom, #000000, #1a1a1a)'
+          background: 'transparent'
         }}
+        dpr={[1, 2]} // Optimización de DPR
+        performance={{ min: 0.5 }} // Optimización de rendimiento
       >
         <ParticleField />
       </DynamicCanvas>

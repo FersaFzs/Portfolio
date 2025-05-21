@@ -12,6 +12,7 @@
     "@emailjs/browser": "^4.4.1",
     "@react-three/drei": "^10.0.8",
     "@react-three/fiber": "^9.1.2",
+    "@splinetool/loader": "^1.9.96",
     "@splinetool/react-spline": "^4.0.0",
     "clsx": "^2.1.1",
     "framer-motion": "^11.18.2",
@@ -26,6 +27,7 @@
     "three": "^0.176.0"
   },
   "devDependencies": {
+    "@babel/plugin-transform-runtime": "^7.27.1",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
