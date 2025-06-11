@@ -15,6 +15,23 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: 'Fersa | Desarrollador Web',
   description: 'Portfolio personal de Fersa, desarrollador web especializado en diseño y desarrollo UX/UI.',
+  manifest: '/manifest.json',
+  themeColor: '#000000',
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: 'default',
+    title: 'Mi Portfolio',
+  },
+  viewport: {
+    width: 'device-width',
+    initialScale: 1,
+    maximumScale: 1,
+    userScalable: false,
+  },
+  icons: {
+    icon: '/icons/icon.svg',
+    apple: '/icons/icon.svg',
+  },
 };
 
 export default function RootLayout({
