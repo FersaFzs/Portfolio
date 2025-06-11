@@ -73,8 +73,14 @@ export function Background3D() {
 
   useEffect(() => {
     setIsMounted(true);
-    const isLowEnd = !window.matchMedia('(min-width: 1024px)').matches || 
-                    navigator.hardwareConcurrency <= 4;
+    // Detección más precisa de dispositivos de bajo rendimiento
+    const isLowEnd = 
+      // Solo dispositivos muy antiguos o con muy poca memoria
+      (navigator.hardwareConcurrency <= 2) || 
+      // Dispositivos con poca memoria (con verificación de tipo)
+      ('deviceMemory' in navigator && (navigator as any).deviceMemory <= 2) ||
+      // Dispositivos con pantallas muy pequeñas
+      window.innerWidth < 320;
     setIsLowPerformance(isLowEnd);
   }, []);
 
@@ -89,8 +95,8 @@ export function Background3D() {
         style={{
           background: 'transparent'
         }}
-        dpr={[1, 2]} // Optimización de DPR
-        performance={{ min: 0.5 }} // Optimización de rendimiento
+        dpr={[0.5, 1.5]} // DPR más bajo para móviles
+        performance={{ min: 0.3 }} // Rendimiento más bajo para móviles
       >
         <ParticleField />
       </DynamicCanvas>
